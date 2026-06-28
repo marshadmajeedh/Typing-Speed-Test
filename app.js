@@ -22,11 +22,29 @@ const wordBank = [
   "own", "below", "country", "plant", "last", "school", "father", "keep", "tree", "never"
 ];
 
+//function that picks 30 random words and joins them
 function generateLine() {
 
     const shuffled = [...wordBank].sort(() => 0.5 - Math.random())
     
     return shuffled.slice(0,30).join(" ")
 }
-const randomLine = generateLine()
-console.log(randomLine)
+
+//This function Renders each word as a <span>, each character as a nested<span></span>
+function returnWord(){
+  const wordsArray = generateLine().split();
+
+  return wordsArray.map(word => {
+    `<span>${returnCharacterFromAWord(word)}`
+  }).join("")
+
+}
+
+//This function Renders each character in a word as <span>
+function returnCharacterFromAWord(word){
+ 
+  return [...word].map(character => {
+    `<span>${character}</>`
+  }).join("")
+
+}
