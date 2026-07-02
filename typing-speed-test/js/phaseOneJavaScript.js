@@ -30,21 +30,51 @@ function generateLine() {
     return shuffled.slice(0,30).join(" ")
 }
 
+let textAreaContainer = document.querySelector(".text-area-container")
+
 //This function Renders each word as a <span>, each character as a nested<span></span>
 function returnWord(){
-  const wordsArray = generateLine().split();
+  const wordsArray = generateLine().split(/\s+/);
 
-  return wordsArray.map(word => {
-    `<span>${returnCharacterFromAWord(word)}`
-  }).join("")
+  let div = document.createElement('div')
+  div.classList.add("child-text-area")
+
+  let htmlString = wordsArray.map((word,index) => {
+
+    const charactersFromWord = returnCharacterFromAWord(word,index)
+
+    return `<span class="word-span">${charactersFromWord}</span>`
+  }).join(" ")
+
+  div.innerHTML = htmlString
+  textAreaContainer.appendChild(div)
 
 }
 
 //This function Renders each character in a word as <span>
-function returnCharacterFromAWord(word){
+function returnCharacterFromAWord(word,wordIndex){
  
-  return [...word].map(character => {
-    `<span>${character}</>`
+  let htmlCharacter = [...word].map((character,index) => {
+
+    const randomColor = generateRandomColor()
+    const customStyle = `color: ${randomColor}; font-size: 4rem`
+  
+    const isFirstLetterOfFirstWord = (wordIndex === 0 && index === 0)
+    const cursorClass = isFirstLetterOfFirstWord ? "cursor" : ""
+
+    return `<span class="${cursorClass}" style="${customStyle}">${character}</span>`
+
   }).join("")
 
+  return htmlCharacter
 }
+
+//This function will generate random colors for child div element using(hue,Saturation,and Lightness)
+function generateRandomColor(){
+
+  const hue = Math.floor(Math.random() * 360)
+
+  return `hsl(${hue},70%,50%)`
+}
+
+returnWord()

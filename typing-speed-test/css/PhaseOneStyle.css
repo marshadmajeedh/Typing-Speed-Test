@@ -1,0 +1,30 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.text-area-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Courier New', Courier, monospace;
+
+    min-height: 90vh;
+
+    border: 2px solid black;
+    border-radius: 10px;
+
+    margin:20px;
+    padding:15px 8%;
+}
+
+.cursor{
+    border-left: 3px solid green;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {border-color: transparent;} /*hidden*/
+    30%      {border-color: green;} /*visible*/
+}
