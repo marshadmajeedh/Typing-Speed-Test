@@ -5,18 +5,27 @@
 }
 .text-area-container{
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow:hidden;
     font-family: 'Courier New', Courier, monospace;
-
+    padding:30px;
     min-height: 90vh;
-
+    
     border: 2px solid black;
     border-radius: 10px;
+    margin:10px;
 
-    margin:20px;
-    padding:15px 8%;
+}
+
+.word-span{
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 2rem;
+}
+
+.char-block{
+    display: inline-block;
 }
 
 .cursor{
