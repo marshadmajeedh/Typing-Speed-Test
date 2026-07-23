@@ -33,6 +33,11 @@
     animation: blink 1s infinite;
 }
 
+.error{
+    border-left: 3px solid red;
+    animation: blink 1s infinite;
+}
+
 @keyframes blink {
     0%, 100% {border-color: transparent;} /*hidden*/
     30%      {border-color: green;} /*visible*/

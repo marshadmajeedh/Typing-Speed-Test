@@ -29,7 +29,21 @@ function generateLine() {
   return thirtyRandomWords.slice(0,30).join(" ")
 }
 
-let textAreaContainer = document.querySelector(".text-area-container")
+export let textAreaContainer = document.querySelector(".text-area-container")
+export let wordTracker = 0
+export let charTracker = 0
+
+export function incrementChar(){
+  charTracker++
+}
+
+export function resetChar(){
+  charTracker = 0
+}
+
+export function incrementWord(){
+  wordTracker++
+}
 
 function renderEachWordAsASpanAndEachCharacterAsANestedSpan(){
 
@@ -44,12 +58,12 @@ function renderEachWordAsASpanAndEachCharacterAsANestedSpan(){
     
       return  `<span class='char-span'>${character}</span>`
 
-    }).join(" ")
+    }).join("")
 
     let randomColor = generateRandomColor()
 
     let customStyle = `color:${randomColor}; font-size:2rem;`
-    return `<span class='word-span ${cursorClass}' style='${customStyle}'>${word}:${characters}</span>`
+    return `<span class='word-span ${cursorClass}' style='${customStyle}'>${characters}</span>`
 
   }).join(" ")
   
