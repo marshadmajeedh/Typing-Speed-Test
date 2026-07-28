@@ -6,7 +6,7 @@
 .text-area-container{
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     overflow:hidden;
     font-family: 'Courier New', Courier, monospace;
     padding:30px;
@@ -21,7 +21,7 @@
 .word-span{
     display: inline-block;
     white-space: nowrap;
-    margin-right: 2rem;
+    margin-right: 10px;
 }
 
 .char-block{
@@ -29,13 +29,12 @@
 }
 
 .cursor{
-    border-left: 3px solid green;
+    border-left: 2px solid green;
     animation: blink 1s infinite;
 }
 
 .error{
-    border-left: 3px solid red;
-    animation: blink 1s infinite;
+    border: 1px solid red;
 }
 
 @keyframes blink {

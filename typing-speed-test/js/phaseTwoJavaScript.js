@@ -1,4 +1,4 @@
-import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar} from './phaseOneJavaScript';
+import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar} from './phaseOneJavaScript.js';
 
 //phase 2
 //Attach a keydown event listener to document — do NOT use an <input> field
@@ -7,7 +7,7 @@ document.addEventListener("keydown",(event) =>{
     let currentWord = textAreaContainer.children[wordTracker]
     const wordLength = currentWord.children.length
 
-    //keep null to check id user still typing this word
+    //keep null to check if user still typing this word
     let activeSpan = null
 
     if(charTracker < wordLength){
@@ -29,7 +29,15 @@ document.addEventListener("keydown",(event) =>{
 
         } else {
             if(activeSpan){
-                activeSpan.classList.add('error')
+                activeSpan.classList.remove('cursor')       
+                currentWord.classList.add('error')
+                resetChar()
+                incrementWord()
+
+                const nextWord = textAreaContainer.children[wordTracker]
+                if(nextWord && nextWord.children[0]){
+                    nextWord.children[0].classList.add('cursor')
+                }
             }
         }
 
@@ -38,10 +46,6 @@ document.addEventListener("keydown",(event) =>{
     else {
        if(activeSpan){
             activeSpan.classList.remove('cursor')
-            if (activeSpan.textContent !== event.key){
-                activeSpan.classList.add('error')
-            }
-
             incrementChar()
             const nextSpan = currentWord.children[charTracker]
             if(nextSpan){

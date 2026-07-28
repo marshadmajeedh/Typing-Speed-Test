@@ -50,28 +50,28 @@ function renderEachWordAsASpanAndEachCharacterAsANestedSpan(){
   const words = generateLine().split(" ")
   
   let htmlString = [...words].map((word,index1) => {
-    
-    let checkCursor = isFirstCharacterOfFirstWord(index1);
-    let cursorClass = checkCursor? "cursor":""
 
-    let characters = [...word].map((character) => {
-    
-      return  `<span class='char-span'>${character}</span>`
+    let characters = [...word].map((character,index2) => {     
+
+      let checkCursor = isFirstCharacterOfFirstWord(index1,index2);
+      let cursorClass = checkCursor? "cursor":"" 
+
+      return  `<span class='char-span ${cursorClass}'>${character}</span>`
 
     }).join("")
 
     let randomColor = generateRandomColor()
 
     let customStyle = `color:${randomColor}; font-size:2rem;`
-    return `<span class='word-span ${cursorClass}' style='${customStyle}'>${characters}</span>`
+    return `<span class='word-span' style='${customStyle}'>${characters}</span>`
 
   }).join(" ")
   
   textAreaContainer.innerHTML = htmlString
 }
 
-function isFirstCharacterOfFirstWord(wordIndex){
-  return wordIndex === 0
+function isFirstCharacterOfFirstWord(wordIndex,charIndex){
+  return wordIndex === 0 && charIndex === 0
 }
 
 function generateRandomColor(){
