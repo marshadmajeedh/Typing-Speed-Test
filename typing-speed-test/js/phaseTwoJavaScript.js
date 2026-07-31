@@ -23,33 +23,54 @@ document.addEventListener("keydown",(event) =>{
             incrementWord()
 
             const nextWord = textAreaContainer.children[wordTracker]
+
             if(nextWord && nextWord.children[0]){
                 nextWord.children[0].classList.add('cursor')
             }
 
         } else {
+
             if(activeSpan){
+
                 activeSpan.classList.remove('cursor')       
                 currentWord.classList.add('error')
                 resetChar()
                 incrementWord()
 
                 const nextWord = textAreaContainer.children[wordTracker]
+
                 if(nextWord && nextWord.children[0]){
                     nextWord.children[0].classList.add('cursor')
                 }
+
             }
         }
 
     }
     //This else handles regular typing 
     else {
-       if(activeSpan){
+
+       if(activeSpan && activeSpan.textContent === event.key){
+
             activeSpan.classList.remove('cursor')
             incrementChar()
+
             const nextSpan = currentWord.children[charTracker]
+
             if(nextSpan){
                 nextSpan.classList.add('cursor')
+            }
+
+        } else if (activeSpan && activeSpan.textContent !== event.key) {
+            activeSpan.classList.remove('cursor')       
+            currentWord.classList.add('error')
+            resetChar()
+            incrementWord()
+
+            const nextWord = textAreaContainer.children[wordTracker]
+
+            if(nextWord && nextWord.children[0]){
+                nextWord.children[0].classList.add('cursor')
             }
         }
     }
