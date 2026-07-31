@@ -9,10 +9,13 @@ document.addEventListener("keydown",(event) =>{
 
     //keep null to check if user still typing this word
     let activeSpan = null
+    
 
     if(charTracker < wordLength){
         activeSpan = currentWord.children[charTracker]
     }
+
+    if (event.key === 'alt' || event.key === 'shift' || event.key === '') return
 
     if (event.key === ' '){
         if (charTracker === wordLength){
@@ -33,14 +36,14 @@ document.addEventListener("keydown",(event) =>{
             if(activeSpan){
 
                 activeSpan.classList.remove('cursor')       
-                currentWord.classList.add('error')
-                resetChar()
-                incrementWord()
+                activeSpan.classList.add('error')
+            
+                incrementChar()
 
-                const nextWord = textAreaContainer.children[wordTracker]
+                const nextChar= currentWord.children[charTracker]
 
-                if(nextWord && nextWord.children[0]){
-                    nextWord.children[0].classList.add('cursor')
+                if(nextChar){
+                    nextChar.classList.add('cursor')
                 }
 
             }
@@ -53,6 +56,7 @@ document.addEventListener("keydown",(event) =>{
        if(activeSpan && activeSpan.textContent === event.key){
 
             activeSpan.classList.remove('cursor')
+            activeSpan.classList.add('correct')
             incrementChar()
 
             const nextSpan = currentWord.children[charTracker]
@@ -62,15 +66,16 @@ document.addEventListener("keydown",(event) =>{
             }
 
         } else if (activeSpan && activeSpan.textContent !== event.key) {
+
             activeSpan.classList.remove('cursor')       
-            currentWord.classList.add('error')
-            resetChar()
-            incrementWord()
+            activeSpan.classList.add('error')
+          
+            incrementChar()
 
-            const nextWord = textAreaContainer.children[wordTracker]
+            const nextChar = currentWord.children[charTracker]
 
-            if(nextWord && nextWord.children[0]){
-                nextWord.children[0].classList.add('cursor')
+            if(nextChar){
+                nextChar.classList.add('cursor')
             }
         }
     }

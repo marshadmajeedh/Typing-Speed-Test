@@ -34,10 +34,14 @@
 }
 
 .error{
-    border: 1px solid red;
+    background-color: red;
 }
 
 @keyframes blink {
     0%, 100% {border-color: transparent;} /*hidden*/
     30%      {border-color: green;} /*visible*/
+}
+
+.correct{
+    background-color: green;
 }
