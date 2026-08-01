@@ -15,7 +15,7 @@ document.addEventListener("keydown",(event) =>{
         activeSpan = currentWord.children[charTracker]
     }
 
-    if (event.key === 'alt' || event.key === 'shift' || event.key === '') return
+    if (event.key === 'Alt' || event.key === 'Shift' || event.key === 'CapsLock' || event.key === 'Control') return
 
     if (event.key === ' '){
         if (charTracker === wordLength){
@@ -34,16 +34,17 @@ document.addEventListener("keydown",(event) =>{
         } else {
 
             if(activeSpan){
-
+            
                 activeSpan.classList.remove('cursor')       
                 activeSpan.classList.add('error')
             
-                incrementChar()
+                resetChar()
+                incrementWord()
 
-                const nextChar= currentWord.children[charTracker]
+                const nextWord= textAreaContainer.children[wordTracker]
 
-                if(nextChar){
-                    nextChar.classList.add('cursor')
+                if (nextWord && nextWord.children[0]){
+                    nextWord.children[0].classList.add('cursor')
                 }
 
             }
