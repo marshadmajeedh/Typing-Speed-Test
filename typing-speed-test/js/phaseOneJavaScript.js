@@ -110,7 +110,7 @@ export function setTyped(condition){
 export function startTimer(){
 
   if(!typed){
-    setTyped(true)
+    typed = true
     intervalID = setInterval(() => {
       
       let currentSecond = Number(second.textContent) + 1
@@ -128,8 +128,6 @@ export function startTimer(){
 }
 
 export function stopTimer(){
-  second.textContent = "00"
-  minute.textContent = "00"
   clearInterval(intervalID)
 }
 

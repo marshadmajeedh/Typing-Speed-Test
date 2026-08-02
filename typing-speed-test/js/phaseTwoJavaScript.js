@@ -144,4 +144,8 @@ document.addEventListener("keydown",(event) =>{
         }
     }
 
+    if (wordTracker === textAreaContainer.children.length-1 && charTracker === currentWord.children.length){
+        stopTimer()
+    }
+
 })
