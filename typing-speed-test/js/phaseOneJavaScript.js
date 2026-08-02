@@ -37,12 +37,24 @@ export function incrementChar(){
   charTracker++
 }
 
+export function decrementChar(){
+  charTracker--
+}
+
 export function resetChar(){
   charTracker = 0
 }
 
+export function setChar(index){
+  charTracker = index
+}
+
 export function incrementWord(){
   wordTracker++
+}
+
+export function decrementWord(){
+  wordTracker--
 }
 
 function renderEachWordAsASpanAndEachCharacterAsANestedSpan(){

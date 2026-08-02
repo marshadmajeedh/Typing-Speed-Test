@@ -1,4 +1,4 @@
-import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar} from './phaseOneJavaScript.js';
+import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar,decrementChar,decrementWord,setChar} from './phaseOneJavaScript.js';
 
 //phase 2
 //Attach a keydown event listener to document — do NOT use an <input> field
@@ -15,7 +15,64 @@ document.addEventListener("keydown",(event) =>{
         activeSpan = currentWord.children[charTracker]
     }
 
+    //if these are pressed do nothing
     if (event.key === 'Alt' || event.key === 'Shift' || event.key === 'CapsLock' || event.key === 'Control') return
+
+    //this handles the backspace
+    if (event.key === 'Backspace'){
+        
+        if (activeSpan){
+            if (wordTracker === 0 && charTracker === 0){
+                return
+            }
+            
+            if (wordTracker > 0 && charTracker === 0){
+
+                activeSpan.classList.remove('cursor')
+                decrementWord()
+                let currentW = textAreaContainer.children[wordTracker]
+                setChar(currentW.children.length-1)
+
+                let currentSpan = currentW.children[charTracker]
+                if(currentSpan){
+                    if(currentSpan.classList.contains('error')) currentSpan.classList.remove('error')
+                    if(currentSpan.classList.contains('correct')) currentSpan.classList.remove('correct')
+                    if(currentSpan.classList.contains('cursor')) currentSpan.classList.remove('cursor')
+
+                    currentSpan.classList.add('cursor')
+                }
+                return
+            }
+
+            if (charTracker < wordLength){
+                decrementChar()
+                let previousCharSpan = currentWord.children[charTracker]
+            
+                if(previousCharSpan.classList.contains('error')) previousCharSpan.classList.remove('error')
+                if(previousCharSpan.classList.contains('correct')) previousCharSpan.classList.remove('correct')
+                if(previousCharSpan.classList.contains('cursor')) previousCharSpan.classList.remove('cursor')
+
+                previousCharSpan.classList.add('cursor')
+
+                if(activeSpan.classList.contains('cursor')) activeSpan.classList.remove('cursor')
+                return
+            }
+        }
+
+        if(charTracker === wordLength){
+            setChar(wordLength-1)
+            let currentSpan = currentWord.children[charTracker]
+            
+            if(currentSpan.classList.contains('error')) currentSpan.classList.remove('error')
+            if(currentSpan.classList.contains('correct')) currentSpan.classList.remove('correct')
+            if(currentSpan.classList.contains('cursor')) currentSpan.classList.remove('cursor')
+
+            currentSpan.classList.add('cursor')
+            
+            return
+        }
+
+    }
 
     if (event.key === ' '){
         if (charTracker === wordLength){
