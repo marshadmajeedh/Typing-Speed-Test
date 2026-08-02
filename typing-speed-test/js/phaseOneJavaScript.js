@@ -26,7 +26,7 @@ const wordBank = [
 function generateLine() {
   const thirtyRandomWords = [...wordBank].sort(() => 0.5 - Math.random())
 
-  return thirtyRandomWords.slice(0,30).join(" ")
+  return thirtyRandomWords.slice(0,77).join(" ")
 }
 
 export let textAreaContainer = document.querySelector(".text-area-container")
