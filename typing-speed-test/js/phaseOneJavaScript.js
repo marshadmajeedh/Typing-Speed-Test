@@ -26,7 +26,7 @@ const wordBank = [
 function generateLine() {
   const thirtyRandomWords = [...wordBank].sort(() => 0.5 - Math.random())
 
-  return thirtyRandomWords.slice(0,77).join(" ")
+  return thirtyRandomWords.slice(0,30).join(" ")
 }
 
 export let textAreaContainer = document.querySelector(".text-area-container")
@@ -94,3 +94,42 @@ function generateRandomColor(){
 }
 
 renderEachWordAsASpanAndEachCharacterAsANestedSpan()
+
+//implement the logic for timer
+
+export let intervalID
+
+export let minute = document.querySelector('.minute')
+export let second = document.querySelector('.second')
+
+export let typed = false
+
+export function setTyped(condition){
+  typed = condition
+}
+export function startTimer(){
+
+  if(!typed){
+    setTyped(true)
+    intervalID = setInterval(() => {
+      
+      let currentSecond = Number(second.textContent) + 1
+      let currentMinute = Number(minute.textContent)
+
+      if(currentSecond === 60){
+        currentMinute += 1
+        currentSecond = 0
+      }
+
+      minute.textContent = String(currentMinute).padStart(2,"0")
+      second.textContent = String(currentSecond).padStart(2,"0")
+    }, 1000);
+  }
+}
+
+export function stopTimer(){
+  second.textContent = "00"
+  minute.textContent = "00"
+  clearInterval(intervalID)
+}
+

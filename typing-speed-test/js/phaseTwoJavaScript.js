@@ -1,4 +1,4 @@
-import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar,decrementChar,decrementWord,setChar} from './phaseOneJavaScript.js';
+import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar,decrementChar,decrementWord,setChar,intervalID,minute,second,startTimer,stopTimer,typed,setTyped} from './phaseOneJavaScript.js';
 
 //phase 2
 //Attach a keydown event listener to document — do NOT use an <input> field
@@ -13,6 +13,12 @@ document.addEventListener("keydown",(event) =>{
 
     if(charTracker < wordLength){
         activeSpan = currentWord.children[charTracker]
+    }
+
+    if(activeSpan){
+        if (wordTracker === 0 && charTracker === 0){
+            startTimer()
+        }
     }
 
     //if these are pressed do nothing
