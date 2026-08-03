@@ -49,6 +49,10 @@ export function setChar(index){
   charTracker = index
 }
 
+export function setWord(index){
+  wordTracker = index
+}
+
 export function incrementWord(){
   wordTracker++
 }
@@ -99,6 +103,10 @@ renderEachWordAsASpanAndEachCharacterAsANestedSpan()
 
 export let intervalID
 
+export function setIntervalID(){
+  clearInterval(intervalID)
+}
+
 export let minute = document.querySelector('.minute')
 export let second = document.querySelector('.second')
 
@@ -127,7 +135,23 @@ export function startTimer(){
   }
 }
 
-export function stopTimer(){
-  clearInterval(intervalID)
+export let isCompleted = false
+
+export function setIsCompleted(condition){
+  isCompleted = condition
 }
 
+export function stopTimer(){
+  setIntervalID()
+}
+
+export function resetGameState(){
+  setIntervalID()
+  minute.textContent = "00"
+  second.textContent = "00"
+  setChar(0)
+  setWord(0)
+  renderEachWordAsASpanAndEachCharacterAsANestedSpan()
+  setTyped(false)
+  setIsCompleted(false)
+}
