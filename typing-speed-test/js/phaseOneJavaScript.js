@@ -154,24 +154,42 @@ export function resetGameState(){
   renderEachWordAsASpanAndEachCharacterAsANestedSpan()
   setTyped(false)
   setIsCompleted(false)
+  resetErrorCount()
+  resetKeyStrokeCount()
 }
 
 //WPM calculate method
-export let errorCount = document.querySelector('.total-error')
-export let keyStrokeCount = document.querySelector('.keystroke-count')
+export let error = document.querySelector('.error-count')
+export let keyStroke = document.querySelector('.keystroke-count')
+export let errorCount = 0
+export let keyStrokeCount = 0
 
-export function increaseErrorCount(){
-  errorCount.textContent = Number(errorCount.textContent)+1
+export function incrementErrorCount(){
+  errorCount++
+  error.textContent = String(errorCount).padStart(2,"0")
 }
 
-export function increaseKeyStrokeCount(){
-  keyStrokeCount.textContent = Number(errorCount.textContent)+1
+export function incrementKeyStrokeCount(){
+  keyStrokeCount++
+  keyStroke.textContent = String(keyStrokeCount).padStart(2,"0")
 }
 
 export function resetErrorCount(){
-  errorCount.textContent = "00"
+  error.textContent = "00"
+  errorCount=0
 }
 
-export function resetKeyStroke(){
-  keyStrokeCount.textContent = "00"
+export function resetKeyStrokeCount(){
+  keyStroke.textContent = "00"
+  keyStrokeCount=0
+}
+
+export function decrementErrorCount(){
+  errorCount--
+  error.textContent = String(errorCount).padStart(2,"0")
+}
+
+export function decrementKeyStrokeCount(){
+  keyStrokeCount--
+  keyStroke.textContent = String(keyStrokeCount).padStart(2,"0")
 }
