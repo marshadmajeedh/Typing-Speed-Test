@@ -155,3 +155,23 @@ export function resetGameState(){
   setTyped(false)
   setIsCompleted(false)
 }
+
+//WPM calculate method
+export let errorCount = document.querySelector('.total-error')
+export let keyStrokeCount = document.querySelector('.keystroke-count')
+
+export function increaseErrorCount(){
+  errorCount.textContent = Number(errorCount.textContent)+1
+}
+
+export function increaseKeyStrokeCount(){
+  keyStrokeCount.textContent = Number(errorCount.textContent)+1
+}
+
+export function resetErrorCount(){
+  errorCount.textContent = "00"
+}
+
+export function resetKeyStroke(){
+  keyStrokeCount.textContent = "00"
+}
