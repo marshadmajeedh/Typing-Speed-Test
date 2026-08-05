@@ -5,4 +5,4 @@
 * CSS
 * Vanilla JS
 
-* I built this project for fun and to improve my tying speed
+# I built this project for fun and to improve my typing speed
