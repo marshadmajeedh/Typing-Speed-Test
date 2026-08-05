@@ -1,7 +1,13 @@
-import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar,decrementChar,decrementWord,setChar,intervalID,minute,second,startTimer,typed,setTyped,setWord,setIntervalID,resetGameState,stopTimer, isCompleted,setIsCompleted,decrementErrorCount,decrementKeyStrokeCount,resetErrorCount,resetKeyStrokeCount,error,keyStroke,errorCount,keyStrokeCount,incrementErrorCount,incrementKeyStrokeCount} from './phaseOneJavaScript.js';
+import{textAreaContainer,wordTracker,charTracker,incrementChar,incrementWord,resetChar,decrementChar,decrementWord,setChar,intervalID,minute,second,startTimer,typed,setTyped,setWord,setIntervalID,resetGameState,stopTimer, isCompleted,setIsCompleted,decrementErrorCount,decrementKeyStrokeCount,resetErrorCount,resetKeyStrokeCount,error,keyStroke,errorCount,keyStrokeCount,incrementErrorCount,incrementKeyStrokeCount,scoreMeasure,speedMeasure,accuracyMeasure} from './phaseOneJavaScript.js';
 
 //Attach a keydown event listener to document — do NOT use an <input> field
 document.addEventListener("keydown",(event) =>{
+
+    if(event.key === 'Escape') {
+        resetGameState()
+        return
+    }
+
     if(isCompleted) return
     //Track a currentIndex variable — compare each keypress against targetChars[currentIndex]
     let currentWord = textAreaContainer.children[wordTracker]
@@ -167,6 +173,18 @@ document.addEventListener("keydown",(event) =>{
     if (wordTracker === textAreaContainer.children.length-1 && charTracker === currentWord.children.length){
         stopTimer()
         setIsCompleted(true)
+        
+        //calculate WPM, Score and Accuracy
+        let totalSeconds = Number(minute.textContent) * 60 + Number(second.textContent)
+        let timesInMinute = Number(totalSeconds / 60) || Number(1/60)
+        let grossWPM = Number(Number(keyStrokeCount / 5) / timesInMinute)
+        let netWPM = Math.max(0,grossWPM - Number (errorCount/timesInMinute))
+        let accuracy = Number (Number(Number(keyStrokeCount-errorCount)/keyStrokeCount) * 100)
+        let score = Number(netWPM * Number(accuracy/100))
+
+        speedMeasure.textContent = Math.round(netWPM)
+        accuracyMeasure.textContent = Math.round(accuracy)
+        scoreMeasure.textContent = Math.round(score)
     }
 
 })

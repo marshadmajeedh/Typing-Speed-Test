@@ -193,3 +193,7 @@ export function decrementKeyStrokeCount(){
   keyStrokeCount--
   keyStroke.textContent = String(keyStrokeCount).padStart(2,"0")
 }
+
+export let speedMeasure = document.querySelector('.speed-measure')
+export let accuracyMeasure = document.querySelector('.accuracy-measure')
+export let scoreMeasure = document.querySelector('.score-measure')

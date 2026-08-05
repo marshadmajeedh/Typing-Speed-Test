@@ -6,84 +6,39 @@
 
 .feature-container{
     display:flex;
-    flex-direction:start;
+    justify-content: space-between;
+    background-color: blanchedalmond;
 
     border:2px solid black;
     border-radius: 10px;
     margin:10px;
-    padding:30px;
+    padding:10px;
     gap:20px;
 }
 
-.timer{
-    display: inline-block;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
+.timer, .speed, .accuracy, .score, .total-error, .total-keystroke{
+    padding: 10px;
+    color: #2980b9;
 }
 
-.timer div{
-    font-size: 2rem;
+.timer div, .speed div, .accuracy div, .score div, .total-error div, .total-keystroke div{
+    font-size: 1rem;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
 }
 
-.timer span{
+.timer span, .speed span, .accuracy span, .score span, .total-error span, .total-keystroke span{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
+    font-size: 1rem;
 }
 
 .reset{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
 }
 
-.total-error{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
-
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.total-error .error-count{
-    font-size: 4rem;
-}
-
-.total-error > div:first-child{
-    font-size: 2rem;
-}
-
-.total-keystroke{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 20px;
-
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.total-keystroke > div:first-child{
-    font-size: 2rem;
-}
-
-.total-keystroke .keystroke-count{
-    font-size: 4rem;
-}
 .reset button{
     font-family: 'Courier New', Courier, monospace;
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: center;
     border-radius: 5px;
     padding: 10px;
@@ -103,10 +58,11 @@
     overflow:hidden;
     font-family: 'Courier New', Courier, monospace;
     padding:30px;
-    
     border: 2px solid black;
     border-radius: 10px;
     margin:10px;
+
+    background-color: antiquewhite;
 
 }
 
@@ -114,6 +70,9 @@
     display: inline-block;
     white-space: nowrap;
     margin-right: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px 20px;
 }
 
 .char-block{
@@ -121,7 +80,7 @@
 }
 
 .cursor{
-    border-left: 2px solid green;
+    border-bottom: 2px solid black;
     animation: blink 1s infinite;
 }
 
@@ -131,7 +90,7 @@
 
 @keyframes blink {
     0%, 100% {border-color: transparent;} /*hidden*/
-    30%      {border-color: green;} /*visible*/
+    30%      {border-color: black;} /*visible*/
 }
 
 .correct{
